@@ -30,6 +30,19 @@ export const PROFILE_FORM_BUTTON_GAP = scale(24);
 /** Bottom spacing */
 export const PROFILE_BOTTOM_MARGIN = verticalScale(120);
 
+/** Success modal */
+export const PROFILE_SUCCESS_MODAL_WIDTH = scale(337);
+export const PROFILE_SUCCESS_MODAL_RADIUS = scale(32);
+export const PROFILE_SUCCESS_PADDING_TOP = scale(32);
+export const PROFILE_SUCCESS_PADDING_BOTTOM = scale(32);
+export const PROFILE_SUCCESS_HORIZONTAL_PADDING = scale(60.5);
+export const PROFILE_SUCCESS_ICON_SIZE = scale(131);
+export const PROFILE_SUCCESS_GAP_ICON_TEXT = scale(32);
+export const PROFILE_SUCCESS_GAP_TEXT_SPINNER = scale(32);
+export const PROFILE_SUCCESS_SPINNER_SIZE = scale(57);
+export const PROFILE_SUCCESS_REDIRECT_MS = 3000;
+export const PROFILE_SUCCESS_OVERLAY = 'rgba(26, 37, 51, 0.45)';
+
 export const PROFILE_COLORS = {
   primary: '#1A2533',
   title: '#1A2533',

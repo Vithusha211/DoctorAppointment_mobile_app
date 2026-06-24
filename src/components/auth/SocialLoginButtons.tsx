@@ -12,6 +12,8 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 type SocialLoginButtonsProps = {
   onGooglePress?: () => void;
   onFacebookPress?: () => void;
+  googleLabel?: string;
+  facebookLabel?: string;
 };
 
 function SocialButton({
@@ -39,20 +41,22 @@ function SocialButton({
 export function SocialLoginButtons({
   onGooglePress,
   onFacebookPress,
+  googleLabel = 'Continue with Google',
+  facebookLabel = 'Continue with Facebook',
 }: SocialLoginButtonsProps) {
   return (
     <View style={styles.container}>
       <SocialButton
         icon="logo-google"
         iconColor="#EA4335"
-        label="Continue with Google"
+        label={googleLabel}
         onPress={onGooglePress}
       />
       <View style={{ height: AUTH_SOCIAL_BUTTON_GAP }} />
       <SocialButton
         icon="logo-facebook"
         iconColor="#1877F2"
-        label="Continue with Facebook"
+        label={facebookLabel}
         onPress={onFacebookPress}
       />
     </View>
