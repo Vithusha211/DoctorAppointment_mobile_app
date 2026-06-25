@@ -9,6 +9,7 @@ import {
 import { CATEGORIES } from '@/data/categories';
 import { scale } from '@/constants/layout';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 const CELL_GAP = scale(16);
@@ -17,9 +18,11 @@ const CELL_WIDTH =
   HOME_CATEGORY_COLUMNS;
 
 export function CategoriesSection() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
-      <SectionHeader title="Categories" />
+      <SectionHeader title="Categories" onSeeAllPress={() => router.push('/doctors')} />
 
       <View style={styles.grid}>
         {CATEGORIES.map((category) => (

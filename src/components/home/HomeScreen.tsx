@@ -10,10 +10,12 @@ import {
   HOME_SECTION_GAP,
   HOME_TOP_PADDING,
 } from '@/constants/home';
+import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export function HomeScreen() {
+  const router = useRouter();
   const insets = useSafeAreaInsets();
 
   return (
@@ -29,7 +31,7 @@ export function HomeScreen() {
 
       <View style={{ height: HOME_LOCATION_SEARCH_GAP }} />
 
-      <HomeSearchBar />
+      <HomeSearchBar onPress={() => router.push('/doctors')} />
 
       <View style={{ height: HOME_SECTION_GAP }} />
 

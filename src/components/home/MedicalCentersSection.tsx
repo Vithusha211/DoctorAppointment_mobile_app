@@ -11,12 +11,18 @@ import { MEDICAL_CENTERS } from '@/data/medical-centers';
 import { scale } from '@/constants/layout';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export function MedicalCentersSection() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
-      <SectionHeader title="Nearby Medical Centers" />
+      <SectionHeader
+        title="Nearby Medical Centers"
+        onSeeAllPress={() => router.push('/doctors')}
+      />
 
       <ScrollView
         horizontal

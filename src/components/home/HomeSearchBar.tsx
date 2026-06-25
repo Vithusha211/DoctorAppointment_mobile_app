@@ -6,22 +6,52 @@ import {
 } from '@/constants/home';
 import { scale } from '@/constants/layout';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-export function HomeSearchBar() {
-  return (
+type HomeSearchBarProps = {
+  value?: string;
+  onChangeText?: (text: string) => void;
+  onPress?: () => void;
+  autoFocus?: boolean;
+};
+
+export function HomeSearchBar({
+  value,
+  onChangeText,
+  onPress,
+  autoFocus,
+}: HomeSearchBarProps) {
+  const content = (
     <View style={styles.container}>
       <Ionicons name="search-outline" size={scale(20)} color={HOME_COLORS.placeholder} />
       <TextInput
         placeholder="Search doctor..."
         placeholderTextColor={HOME_COLORS.placeholder}
         style={styles.input}
+        value={value}
+        onChangeText={onChangeText}
+        editable={!onPress}
+        pointerEvents={onPress ? 'none' : 'auto'}
+        autoFocus={autoFocus}
       />
     </View>
   );
+
+  if (onPress) {
+    return (
+      <Pressable onPress={onPress} style={styles.pressable}>
+        {content}
+      </Pressable>
+    );
+  }
+
+  return content;
 }
 
 const styles = StyleSheet.create({
+  pressable: {
+    width: HOME_CONTENT_WIDTH,
+  },
   container: {
     width: HOME_CONTENT_WIDTH,
     height: HOME_SEARCH_HEIGHT,
