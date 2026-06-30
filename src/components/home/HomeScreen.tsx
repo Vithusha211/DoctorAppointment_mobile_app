@@ -8,8 +8,10 @@ import {
   HOME_HORIZONTAL_MARGIN,
   HOME_LOCATION_SEARCH_GAP,
   HOME_SECTION_GAP,
+  HOME_TAB_BAR_HEIGHT,
   HOME_TOP_PADDING,
 } from '@/constants/home';
+import { scale } from '@/constants/layout';
 import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -21,9 +23,13 @@ export function HomeScreen() {
   return (
     <ScrollView
       style={styles.flex}
+      nestedScrollEnabled
       contentContainerStyle={[
         styles.content,
-        { paddingTop: insets.top + HOME_TOP_PADDING },
+        {
+          paddingTop: insets.top + HOME_TOP_PADDING,
+          paddingBottom: HOME_TAB_BAR_HEIGHT + insets.bottom + scale(16),
+        },
       ]}
       showsVerticalScrollIndicator={false}
     >

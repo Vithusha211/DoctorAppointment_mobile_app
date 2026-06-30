@@ -14,6 +14,9 @@ import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+const CARD_TEXT_HEIGHT = scale(20);
+const LIST_HEIGHT = HOME_MEDICAL_CARD_IMAGE_HEIGHT + scale(10) + CARD_TEXT_HEIGHT;
+
 export function MedicalCentersSection() {
   const router = useRouter();
 
@@ -26,7 +29,9 @@ export function MedicalCentersSection() {
 
       <ScrollView
         horizontal
+        nestedScrollEnabled
         showsHorizontalScrollIndicator={false}
+        style={styles.listScroll}
         contentContainerStyle={styles.list}
       >
         {MEDICAL_CENTERS.map((center) => (
@@ -51,8 +56,13 @@ const styles = StyleSheet.create({
   container: {
     width: HOME_CONTENT_WIDTH,
   },
+  listScroll: {
+    width: HOME_CONTENT_WIDTH,
+    height: LIST_HEIGHT,
+  },
   list: {
     gap: HOME_MEDICAL_CARD_GAP,
+    height: LIST_HEIGHT,
   },
   card: {
     width: HOME_MEDICAL_CARD_WIDTH,

@@ -10,9 +10,9 @@ import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import {
-  FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -29,17 +29,19 @@ export function PromoBannerCarousel() {
   };
 
   return (
-    <View>
-      <FlatList
-        data={PROMO_BANNERS}
+    <View style={styles.container}>
+      <ScrollView
         horizontal
         pagingEnabled
+        nestedScrollEnabled
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
         onScroll={handleScroll}
         scrollEventThrottle={16}
-        renderItem={({ item }) => (
-          <View style={styles.bannerWrapper}>
+        style={styles.scroll}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {PROMO_BANNERS.map((item) => (
+          <View key={item.id} style={styles.bannerWrapper}>
             <LinearGradient
               colors={[HOME_COLORS.bannerGradientStart, HOME_COLORS.bannerGradientEnd]}
               start={{ x: 0, y: 0 }}
@@ -61,15 +63,27 @@ export function PromoBannerCarousel() {
               </View>
             </LinearGradient>
           </View>
-        )}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: HOME_CONTENT_WIDTH,
+    height: HOME_BANNER_HEIGHT,
+  },
+  scroll: {
+    width: HOME_CONTENT_WIDTH,
+    height: HOME_BANNER_HEIGHT,
+  },
+  scrollContent: {
+    height: HOME_BANNER_HEIGHT,
+  },
   bannerWrapper: {
     width: HOME_CONTENT_WIDTH,
+    height: HOME_BANNER_HEIGHT,
   },
   banner: {
     width: HOME_CONTENT_WIDTH,
