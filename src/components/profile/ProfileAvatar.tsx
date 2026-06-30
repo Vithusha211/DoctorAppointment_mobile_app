@@ -3,7 +3,6 @@ import {
   PROFILE_AVATAR_SIZE,
   PROFILE_COLORS,
 } from '@/constants/profile';
-import { scale } from '@/constants/layout';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -11,25 +10,50 @@ import { Pressable, StyleSheet, View } from 'react-native';
 type ProfileAvatarProps = {
   imageUri?: string | null;
   onPress?: () => void;
+  size?: number;
+  editSize?: number;
 };
 
-export function ProfileAvatar({ imageUri, onPress }: ProfileAvatarProps) {
+export function ProfileAvatar({
+  imageUri,
+  onPress,
+  size = PROFILE_AVATAR_SIZE,
+  editSize = PROFILE_AVATAR_EDIT_SIZE,
+}: ProfileAvatarProps) {
+  const placeholderIconSize = size * 0.3;
+  const editIconSize = editSize * 0.47;
+
   return (
-    <View style={styles.wrapper}>
-      <Pressable onPress={onPress} style={styles.avatar}>
+    <View style={[styles.wrapper, { width: size, height: size }]}>
+      <Pressable
+        onPress={onPress}
+        style={[styles.avatar, { width: size, height: size, borderRadius: size / 2 }]}
+      >
         {imageUri ? (
           <Image source={{ uri: imageUri }} style={styles.image} contentFit="cover" />
         ) : (
           <Ionicons
             name="person-outline"
-            size={scale(64)}
+            size={placeholderIconSize}
             color={PROFILE_COLORS.placeholder}
           />
         )}
       </Pressable>
 
-      <Pressable onPress={onPress} style={styles.editBadge}>
-        <Ionicons name="pencil" size={scale(16)} color={PROFILE_COLORS.white} />
+      <Pressable
+        onPress={onPress}
+        style={[
+          styles.editBadge,
+          {
+            right: size * 0.06,
+            bottom: size * 0.04,
+            width: editSize,
+            height: editSize,
+            borderRadius: editSize / 2,
+          },
+        ]}
+      >
+        <Ionicons name="pencil" size={editIconSize} color={PROFILE_COLORS.white} />
       </Pressable>
     </View>
   );
@@ -37,15 +61,10 @@ export function ProfileAvatar({ imageUri, onPress }: ProfileAvatarProps) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: PROFILE_AVATAR_SIZE,
-    height: PROFILE_AVATAR_SIZE,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatar: {
-    width: PROFILE_AVATAR_SIZE,
-    height: PROFILE_AVATAR_SIZE,
-    borderRadius: PROFILE_AVATAR_SIZE / 2,
     backgroundColor: PROFILE_COLORS.avatarBg,
     alignItems: 'center',
     justifyContent: 'center',
@@ -57,11 +76,6 @@ const styles = StyleSheet.create({
   },
   editBadge: {
     position: 'absolute',
-    right: scale(12),
-    bottom: scale(8),
-    width: PROFILE_AVATAR_EDIT_SIZE,
-    height: PROFILE_AVATAR_EDIT_SIZE,
-    borderRadius: PROFILE_AVATAR_EDIT_SIZE / 2,
     backgroundColor: PROFILE_COLORS.editBadge,
     alignItems: 'center',
     justifyContent: 'center',

@@ -3,6 +3,7 @@ import {
   HOME_CATEGORY_COLUMNS,
   HOME_CATEGORY_ICON_RADIUS,
   HOME_CATEGORY_ICON_SIZE,
+  HOME_CATEGORY_ROW_GAP,
   HOME_COLORS,
   HOME_CONTENT_WIDTH,
 } from '@/constants/home';
@@ -12,10 +13,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
-const CELL_GAP = scale(16);
+const CELL_GAP = HOME_CATEGORY_ROW_GAP;
 const CELL_WIDTH =
   (HOME_CONTENT_WIDTH - CELL_GAP * (HOME_CATEGORY_COLUMNS - 1)) /
   HOME_CATEGORY_COLUMNS;
+const CELL_HEIGHT = HOME_CATEGORY_ICON_SIZE + scale(8) + scale(16);
 
 export function CategoriesSection() {
   const router = useRouter();
@@ -56,7 +58,9 @@ const styles = StyleSheet.create({
   },
   cell: {
     width: CELL_WIDTH,
+    height: CELL_HEIGHT,
     alignItems: 'center',
+    justifyContent: 'flex-start',
     gap: scale(8),
   },
   iconBox: {
@@ -67,9 +71,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   label: {
+    width: '100%',
     color: HOME_COLORS.title,
     fontSize: scale(12),
     fontWeight: '500',
+    lineHeight: scale(16),
     textAlign: 'center',
   },
 });
