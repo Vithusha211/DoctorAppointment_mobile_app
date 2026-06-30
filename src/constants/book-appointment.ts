@@ -1,0 +1,61 @@
+import { scale } from './layout';
+
+export const BOOK_APPOINTMENT_HORIZONTAL_MARGIN = scale(24);
+export const BOOK_APPOINTMENT_CONTENT_WIDTH = scale(342);
+export const BOOK_APPOINTMENT_TOP_PADDING = scale(10);
+export const BOOK_APPOINTMENT_HEADER_HEIGHT = scale(50);
+export const BOOK_APPOINTMENT_HEADER_ICON_SIZE = scale(24);
+export const BOOK_APPOINTMENT_HEADER_TO_CONTENT_GAP = scale(38);
+export const BOOK_APPOINTMENT_SECTION_TITLE_SIZE = scale(18);
+export const BOOK_APPOINTMENT_SECTION_TITLE_LINE_HEIGHT = scale(30);
+export const BOOK_APPOINTMENT_SECTION_TITLE_TO_CONTENT = scale(16);
+export const BOOK_APPOINTMENT_DATE_TO_HOUR_GAP = scale(24);
+export const BOOK_APPOINTMENT_CALENDAR_PADDING = scale(16);
+export const BOOK_APPOINTMENT_CALENDAR_RADIUS = scale(16);
+export const BOOK_APPOINTMENT_CALENDAR_INNER_WIDTH = scale(310);
+export const BOOK_APPOINTMENT_CALENDAR_DAY_WIDTH = scale(36);
+export const BOOK_APPOINTMENT_CALENDAR_DAY_HEIGHT = scale(34);
+export const BOOK_APPOINTMENT_CALENDAR_DAY_GAP = scale(9.67);
+export const BOOK_APPOINTMENT_CALENDAR_DAY_RADIUS = scale(17);
+export const BOOK_APPOINTMENT_CALENDAR_WEEKDAY_HEIGHT = scale(25);
+export const BOOK_APPOINTMENT_TIME_SLOT_WIDTH = scale(105);
+export const BOOK_APPOINTMENT_TIME_SLOT_HEIGHT = scale(41);
+export const BOOK_APPOINTMENT_TIME_SLOT_GAP = scale(13.5);
+export const BOOK_APPOINTMENT_TIME_SLOT_RADIUS = scale(12);
+export const BOOK_APPOINTMENT_TIME_SLOT_FONT_SIZE = scale(14);
+export const BOOK_APPOINTMENT_TIME_SLOT_LINE_HEIGHT = scale(21);
+export const BOOK_APPOINTMENT_FOOTER_PADDING = scale(24);
+export const BOOK_APPOINTMENT_BUTTON_HEIGHT = scale(48);
+export const BOOK_APPOINTMENT_BUTTON_RADIUS = scale(24);
+export const BOOK_APPOINTMENT_BUTTON_TEXT_SIZE = scale(16);
+export const BOOK_APPOINTMENT_BUTTON_TEXT_LINE_HEIGHT = scale(24);
+
+export const APPOINTMENT_SUCCESS_MODAL_WIDTH = scale(341);
+export const APPOINTMENT_SUCCESS_MODAL_RADIUS = scale(32);
+export const APPOINTMENT_SUCCESS_OVERLAY = 'rgba(26, 37, 51, 0.45)';
+export const APPOINTMENT_SUCCESS_PADDING_TOP = scale(32);
+export const APPOINTMENT_SUCCESS_PADDING_BOTTOM = scale(49);
+export const APPOINTMENT_SUCCESS_HORIZONTAL_PADDING = scale(48);
+export const APPOINTMENT_SUCCESS_ICON_SIZE = scale(131);
+export const APPOINTMENT_SUCCESS_GAP_ICON_TITLE = scale(8);
+export const APPOINTMENT_SUCCESS_GAP_TITLE_MESSAGE = scale(12);
+export const APPOINTMENT_SUCCESS_GAP_MESSAGE_BUTTON = scale(24);
+export const APPOINTMENT_SUCCESS_GAP_BUTTON_EDIT = scale(16);
+export const APPOINTMENT_SUCCESS_TITLE_SIZE = scale(22);
+export const APPOINTMENT_SUCCESS_TITLE_LINE_HEIGHT = scale(30);
+export const APPOINTMENT_SUCCESS_MESSAGE_SIZE = scale(14);
+export const APPOINTMENT_SUCCESS_MESSAGE_LINE_HEIGHT = scale(22);
+export const APPOINTMENT_SUCCESS_DONE_BUTTON_HEIGHT = scale(48);
+export const APPOINTMENT_SUCCESS_DONE_BUTTON_RADIUS = scale(24);
+
+export const BOOK_APPOINTMENT_COLORS = {
+  background: '#F9FAFB',
+  cardBg: '#FFFFFF',
+  title: '#1A2533',
+  subtitle: '#6B7C93',
+  muted: '#9CA3AF',
+  slotBg: '#F3F4F6',
+  selectedBg: '#1A2533',
+  selectedText: '#FFFFFF',
+  border: '#E5E7EB',
+} as const;

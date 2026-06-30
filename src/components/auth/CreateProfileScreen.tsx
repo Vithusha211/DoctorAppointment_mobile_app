@@ -1,6 +1,7 @@
 import { ProfileAvatar } from '@/components/profile/ProfileAvatar';
 import { ProfileField, ProfileSelectField } from '@/components/profile/ProfileField';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
+import { ProfileSuccessModal } from '@/components/profile/ProfileSuccessModal';
 import { Button } from '@/components/common/Button';
 import {
   AUTH_COLORS,
@@ -19,7 +20,6 @@ import {
   PROFILE_HORIZONTAL_MARGIN,
   PROFILE_INPUT_GAP,
 } from '@/constants/profile';
-import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
   KeyboardAvoidingView,
@@ -31,16 +31,16 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export function CreateProfileScreen() {
-  const router = useRouter();
   const insets = useSafeAreaInsets();
   const [fullName, setFullName] = useState('Michael Jordan');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [gender, setGender] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSave = () => {
-    router.replace('/auth/success');
+    setShowSuccess(true);
   };
 
   return (
@@ -111,6 +111,8 @@ export function CreateProfileScreen() {
           style={styles.saveButton}
         />
       </ScrollView>
+
+      <ProfileSuccessModal visible={showSuccess} />
     </KeyboardAvoidingView>
   );
 }

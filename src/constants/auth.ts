@@ -50,6 +50,30 @@ export const AUTH_FOOTER_BOTTOM = scale(32);
 /** Social to footer gap */
 export const AUTH_SOCIAL_FOOTER_GAP = scale(24);
 
+/** Forgot password link spacing */
+export const AUTH_FORGOT_PASSWORD_TOP_GAP = scale(24);
+export const AUTH_FORGOT_PASSWORD_FOOTER_GAP = scale(24);
+
+/** Forget password screen */
+export const AUTH_BACK_BUTTON_SIZE = scale(24);
+export const AUTH_FORGOT_PASSWORD_TOP_PADDING = scale(16);
+export const AUTH_FORGOT_PASSWORD_HEADER_GAP = scale(41);
+export const AUTH_FORGOT_PASSWORD_FORM_BUTTON_GAP = scale(80);
+
+/** Verify code screen */
+export const VERIFY_CODE_LENGTH = 5;
+export const VERIFY_CODE_CELL_GAP = scale(16);
+export const VERIFY_CODE_CELL_SIZE =
+  (AUTH_CONTENT_WIDTH - VERIFY_CODE_CELL_GAP * (VERIFY_CODE_LENGTH - 1)) /
+  VERIFY_CODE_LENGTH;
+export const VERIFY_CODE_CELL_RADIUS = scale(12);
+export const AUTH_VERIFY_CODE_SUBTITLE_TO_OTP_GAP = scale(112);
+export const AUTH_VERIFY_CODE_OTP_TO_BUTTON_GAP = scale(80);
+export const AUTH_VERIFY_CODE_BUTTON_TO_RESEND_GAP = scale(72);
+
+/** Reset password screen */
+export const AUTH_RESET_PASSWORD_SUBTITLE_TO_FORM_GAP = scale(112);
+
 export const AUTH_COLORS = {
   primary: '#1A2533',
   title: '#1A2533',
