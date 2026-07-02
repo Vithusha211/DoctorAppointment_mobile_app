@@ -20,6 +20,7 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -48,7 +49,11 @@ export function OnboardingScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.scrollContent}
+      showsVerticalScrollIndicator={false}
+    >
       <Image
         key={slide.id}
         source={
@@ -89,7 +94,7 @@ export function OnboardingScreen() {
           ]}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -97,6 +102,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: ONBOARDING_COLORS.white,
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   heroImage: {
     width: '100%',

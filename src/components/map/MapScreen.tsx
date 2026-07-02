@@ -5,7 +5,7 @@ import { MAP_COLORS, MAP_PIN_HEIGHT, MAP_PIN_WIDTH } from '@/constants/map';
 import { MAP_BACKGROUND_IMAGE, MAP_DOCTOR_PINS } from '@/data/map-locations';
 import { Image } from 'expo-image';
 import { LayoutChangeEvent, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export function MapScreen() {
@@ -18,7 +18,10 @@ export function MapScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <View style={{ paddingTop: insets.top }}>
         <MapSearchBar />
       </View>
@@ -49,7 +52,7 @@ export function MapScreen() {
 
         <MapClinicCarousel />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

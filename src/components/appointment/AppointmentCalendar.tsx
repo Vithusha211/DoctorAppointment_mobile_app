@@ -28,6 +28,14 @@ type AppointmentCalendarProps = {
   onSelectDate: (date: Date) => void;
 };
 
+function chunkWeeks(days: CalendarDay[]) {
+  const weeks: CalendarDay[][] = [];
+  for (let i = 0; i < days.length; i += 7) {
+    weeks.push(days.slice(i, i + 7));
+  }
+  return weeks;
+}
+
 export function AppointmentCalendar({
   visibleMonth,
   selectedDate,
@@ -37,6 +45,7 @@ export function AppointmentCalendar({
   const year = visibleMonth.getFullYear();
   const month = visibleMonth.getMonth();
   const days = getMonthDays(year, month);
+  const weeks = chunkWeeks(days);
 
   const handlePrevMonth = () => {
     onMonthChange(new Date(year, month - 1, 1));
@@ -69,13 +78,17 @@ export function AppointmentCalendar({
       </View>
 
       <View style={styles.daysGrid}>
-        {days.map((day) => (
-          <DayCell
-            key={day.date.toISOString()}
-            day={day}
-            selected={isSameDay(day.date, selectedDate)}
-            onPress={() => onSelectDate(day.date)}
-          />
+        {weeks.map((week, weekIndex) => (
+          <View key={weekIndex} style={[styles.weekRow, weekIndex === weeks.length - 1 && styles.weekRowLast]}>
+            {week.map((day) => (
+              <DayCell
+                key={day.date.toISOString()}
+                day={day}
+                selected={isSameDay(day.date, selectedDate)}
+                onPress={() => onSelectDate(day.date)}
+              />
+            ))}
+          </View>
         ))}
       </View>
     </View>
@@ -143,7 +156,7 @@ const styles = StyleSheet.create({
   weekdayRow: {
     width: BOOK_APPOINTMENT_CALENDAR_INNER_WIDTH,
     flexDirection: 'row',
-    gap: BOOK_APPOINTMENT_CALENDAR_DAY_GAP,
+    justifyContent: 'space-between',
     marginBottom: scale(8),
   },
   weekday: {
@@ -157,9 +170,15 @@ const styles = StyleSheet.create({
   },
   daysGrid: {
     width: BOOK_APPOINTMENT_CALENDAR_INNER_WIDTH,
+  },
+  weekRow: {
+    width: BOOK_APPOINTMENT_CALENDAR_INNER_WIDTH,
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: BOOK_APPOINTMENT_CALENDAR_DAY_GAP,
+    justifyContent: 'space-between',
+    marginBottom: BOOK_APPOINTMENT_CALENDAR_DAY_GAP,
+  },
+  weekRowLast: {
+    marginBottom: 0,
   },
   dayCell: {
     width: BOOK_APPOINTMENT_CALENDAR_DAY_WIDTH,
