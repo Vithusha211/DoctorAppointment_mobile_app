@@ -31,8 +31,6 @@ type LogoutModalProps = {
 
 export function LogoutModal({ visible, onCancel, onConfirm }: LogoutModalProps) {
   const insets = useSafeAreaInsets();
-  const buttonWidth =
-    (PROFILE_CONTENT_WIDTH - PROFILE_LOGOUT_MODAL_PADDING_H * 2 - PROFILE_LOGOUT_BUTTON_GAP) / 2;
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onCancel}>
@@ -59,15 +57,12 @@ export function LogoutModal({ visible, onCancel, onConfirm }: LogoutModalProps) 
           <View style={styles.actions}>
             <Pressable
               onPress={onCancel}
-              style={[styles.button, styles.cancelButton, { width: buttonWidth }]}
+              style={[styles.button, styles.cancelButton, styles.buttonLeft]}
             >
               <Text style={styles.cancelText}>Cancel</Text>
             </Pressable>
 
-            <Pressable
-              onPress={onConfirm}
-              style={[styles.button, styles.logoutButton, { width: buttonWidth }]}
-            >
+            <Pressable onPress={onConfirm} style={[styles.button, styles.logoutButton]}>
               <Text style={styles.logoutText}>Yes, Logout</Text>
             </Pressable>
           </View>
@@ -112,16 +107,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   actions: {
-    width: PROFILE_CONTENT_WIDTH,
+    width: '100%',
+    maxWidth: PROFILE_CONTENT_WIDTH,
     flexDirection: 'row',
-    gap: PROFILE_LOGOUT_BUTTON_GAP,
   },
   button: {
+    flex: 1,
+    minWidth: 0,
     height: PROFILE_LOGOUT_BUTTON_HEIGHT,
     borderRadius: PROFILE_LOGOUT_BUTTON_RADIUS,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: scale(8),
+  },
+  buttonLeft: {
+    marginRight: PROFILE_LOGOUT_BUTTON_GAP,
   },
   cancelButton: {
     backgroundColor: PROFILE_COLORS.cancelBg,

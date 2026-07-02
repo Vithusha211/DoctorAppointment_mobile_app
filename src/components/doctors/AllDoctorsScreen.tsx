@@ -24,7 +24,15 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type SortOption = 'default' | 'rating-desc' | 'rating-asc' | 'name';
@@ -149,30 +157,35 @@ export function AllDoctorsScreen() {
   );
 
   return (
-    <FlatList
+    <KeyboardAvoidingView
       style={styles.flex}
-      contentContainerStyle={[
-        styles.content,
-        {
-          paddingTop: insets.top + DOCTORS_TOP_PADDING,
-          paddingBottom: Math.max(insets.bottom, DOCTORS_TOP_PADDING),
-        },
-      ]}
-      data={filteredDoctors}
-      keyExtractor={(item) => item.id}
-      ListHeaderComponent={listHeader}
-      renderItem={({ item }) => (
-        <DoctorCard
-          doctor={item}
-          isFavorite={favorites.has(item.id)}
-          onToggleFavorite={() => handleToggleFavorite(item.id)}
-          onPress={() => router.push(`/doctors/${item.id}`)}
-        />
-      )}
-      ItemSeparatorComponent={() => <View style={{ height: DOCTORS_CARD_GAP }} />}
-      showsVerticalScrollIndicator={false}
-      keyboardShouldPersistTaps="handled"
-    />
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <FlatList
+        style={styles.flex}
+        contentContainerStyle={[
+          styles.content,
+          {
+            paddingTop: insets.top + DOCTORS_TOP_PADDING,
+            paddingBottom: Math.max(insets.bottom, DOCTORS_TOP_PADDING),
+          },
+        ]}
+        data={filteredDoctors}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={listHeader}
+        renderItem={({ item }) => (
+          <DoctorCard
+            doctor={item}
+            isFavorite={favorites.has(item.id)}
+            onToggleFavorite={() => handleToggleFavorite(item.id)}
+            onPress={() => router.push(`/doctors/${item.id}`)}
+          />
+        )}
+        ItemSeparatorComponent={() => <View style={{ height: DOCTORS_CARD_GAP }} />}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      />
+    </KeyboardAvoidingView>
   );
 }
 

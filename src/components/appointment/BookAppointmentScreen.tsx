@@ -110,7 +110,6 @@ export function BookAppointmentScreen() {
       >
         <Button
           title="Confirm"
-          width={AUTH_CONTENT_WIDTH}
           onPress={() => setShowSuccessModal(true)}
           style={styles.confirmButton}
         />
@@ -168,7 +167,8 @@ const styles = StyleSheet.create({
     height: BOOK_APPOINTMENT_BUTTON_HEIGHT,
     borderRadius: BOOK_APPOINTMENT_BUTTON_RADIUS,
     backgroundColor: AUTH_COLORS.primary,
-    width: AUTH_CONTENT_WIDTH,
+    width: '100%',
+    maxWidth: BOOK_APPOINTMENT_CONTENT_WIDTH,
   },
   missingText: {
     color: BOOK_APPOINTMENT_COLORS.title,
